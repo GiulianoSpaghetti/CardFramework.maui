@@ -20,21 +20,21 @@ namespace org.altervista.numerone.framework
                    valore,
                    punteggio;
         private readonly string semeStr;
-        private readonly CartaHelperBriscola helper;
+        private static CartaHelper helper;
         private readonly static Carta[] carte = new Carta[40];
-        private Carta(UInt16 n, CartaHelperBriscola h, ResourceDictionary d)
+        private Carta(UInt16 n, string s0, string s1, string s2, string s3)
         {
-            helper = h;
             seme = helper.GetSeme(n);
             valore = helper.GetValore(n);
             punteggio = helper.GetPunteggio(n);
-            semeStr = helper.GetSemeStr(n, d);
+            semeStr = helper.GetSemeStr(n, s0, s1, s2, s3);
         }
-        public static void Inizializza(UInt16 n, CartaHelperBriscola h, ResourceDictionary d)
+        public static void Inizializza(UInt16 n, CartaHelper h, string s0, string s1, string s2, string s3)
         {
+            helper = h;
             for (UInt16 i = 0; i < n; i++)
             {
-                carte[i] = new Carta(i, h, d);
+                carte[i] = new Carta(i, s0, s1, s2, s3);
 
             }
         }
@@ -52,14 +52,11 @@ namespace org.altervista.numerone.framework
                 return helper.CompareTo(helper.GetNumero(GetSeme(), GetValore()), helper.GetNumero(c1.GetSeme(), c1.GetValore()));
         }
 
-        public override string ToString()
-        {
-            return $"{valore + 1} di {semeStr}{(StessoSeme(helper.GetCartaBriscola()) ? "*" : " ")} ";
-        }
-
         public String GetID()
         {
             return $"n{seme * 10 + valore}";
         }
+
+        public static void SetHelper(CartaHelper h) { helper = h; }
     }
 }

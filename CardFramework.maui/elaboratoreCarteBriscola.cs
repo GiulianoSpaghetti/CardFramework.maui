@@ -13,26 +13,35 @@ namespace org.altervista.numerone.framework
 {
     public class ElaboratoreCarteBriscola : ElaboratoreCarte
 	{
-		private const UInt16 numeroCarte = 40;
+		private UInt16 numeroCarte = 40;
 		private bool[] doppione;
-		private static UInt16 CartaBriscola;
+		private UInt16 CartaBriscola, min, max;
 		private bool inizio,
 				 briscolaDaPunti;
 		public static Random r = new Random();
-		public ElaboratoreCarteBriscola(bool punti = true)
+		public ElaboratoreCarteBriscola(bool punti = true, UInt16 a=40, UInt16 m=0, UInt16 n=39)
 		{
 			inizio = true;
 			briscolaDaPunti = punti;
-			doppione = new bool[40];
-			for (int i = 0; i < 40; i++)
-				doppione[i] = false;
-		}
-		public UInt16 GetCarta()
+			doppione = new bool[a+min];
+			min = m;
+			max = n;
+			numeroCarte = a;
+			if (numeroCarte != max - min + 1)
+				throw new ArgumentOutOfRangeException("Chiamata ad elaboratorecartebriscola con numeroCarte!=max-min+1");
+            for (int i = 0; i < numeroCarte; i++)
+                doppione[i] = false;
+        }
+        public UInt16 GetCarta()
 		{
-			UInt16 fine = (UInt16)(r.Next(0, 39) % numeroCarte),
+			UInt16 fine = (UInt16)(r.Next(min, max)),
 			Carta = (UInt16)((fine + 1) % numeroCarte);
 			while (doppione[Carta] && Carta != fine)
+			{
 				Carta = (UInt16)((Carta + 1) % numeroCarte);
+				if (Carta < min)
+					Carta = min;
+			}
 			if (doppione[Carta])
 				throw new ArgumentException("Chiamato elaboratoreCarteItaliane::getCarta() quando non ci sono più carte da elaborare");
 			else
@@ -52,6 +61,11 @@ namespace org.altervista.numerone.framework
 			}
 		}
 
-		public static UInt16 GetCartaBriscola() { return CartaBriscola; }
-	}
+		public UInt16 GetCartaBriscola() { return CartaBriscola; }
+
+        public ushort GetNumeroCarte()
+        {
+            return numeroCarte;
+        }
+    }
 }

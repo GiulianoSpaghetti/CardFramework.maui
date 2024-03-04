@@ -8,6 +8,7 @@
  */
 
 using System;
+using System.Globalization;
 using System.Xml.Linq;
 
 namespace org.altervista.numerone.framework
@@ -15,15 +16,6 @@ namespace org.altervista.numerone.framework
     public class CartaHelperBriscola : CartaHelper {
 		private readonly UInt16 CartaBriscola;
 		public CartaHelperBriscola(UInt16 briscola) { CartaBriscola = briscola; }
-		private static CartaHelperBriscola istanza;
-		public static CartaHelperBriscola GetIstanza(ElaboratoreCarteBriscola e) {
-			if (istanza == null) {
-				if (e == null)
-					throw new ArgumentNullException("Chiamata a CartaHelperBriscola::getIstanza con istanza==NULL e e==NULL");
-				istanza = new CartaHelperBriscola(ElaboratoreCarteBriscola.GetCartaBriscola());
-			}
-			return istanza;
-		}
 		public UInt16 GetSeme(UInt16 Carta) {
 			return (UInt16)(Carta / 10);
 		}
@@ -41,15 +33,16 @@ namespace org.altervista.numerone.framework
 			}
 			return valore;
 		}
-		public string GetSemeStr(UInt16 Carta, ResourceDictionary d)
+		public string GetSemeStr(UInt16 Carta, string s0, string s1, string s2, string s3)
 		{
 			string s = "";
 			switch (Carta / 10)
 			{
-				case 0: s = $"{d["bastoni"]}"; break;
-				case 1: s = $"{d["coppe"]}"; break;
-				case 2: s = $"{d["denari"]}"; break;
-				case 3: s = $"{d["spade"]}"; break;
+				case 0: s = s0 ; break;
+				case 1: s = s1; break;
+				case 2: s = s2; break;
+				case 3: s = s3; break;
+				default: throw new ArgumentException("Chiamato getsemestr con seme > 3");
 			}
 			return s;
 		}

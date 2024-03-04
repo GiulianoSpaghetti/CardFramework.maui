@@ -13,5 +13,6 @@ namespace org.altervista.numerone.framework
     public interface ElaboratoreCarte
     {
         UInt16 GetCarta();
+        UInt16 GetNumeroCarte();
     };
 }
