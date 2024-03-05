@@ -7,10 +7,6 @@
  *
  */
 
-using System;
-using System.Globalization;
-using System.Xml.Linq;
-
 namespace org.altervista.numerone.framework
 {
     public class CartaHelperBriscola : CartaHelper {

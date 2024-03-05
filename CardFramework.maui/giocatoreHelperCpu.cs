@@ -7,8 +7,6 @@
  *
  */
 
-using System;
-
 namespace org.altervista.numerone.framework
 {
     public abstract class GiocatoreHelperCpu : GiocatoreHelper

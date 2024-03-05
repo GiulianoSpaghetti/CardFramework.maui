@@ -8,10 +8,6 @@
  *
  */
 
-
-using Microsoft.Maui.Controls.PlatformConfiguration;
-using System;
-
 namespace org.altervista.numerone.framework
 {
     public class Carta
@@ -58,5 +54,15 @@ namespace org.altervista.numerone.framework
         }
 
         public static void SetHelper(CartaHelper h) { helper = h; }
+
+        public override string ToString()
+        {
+            string s = $"{valore + 1} di {semeStr}";
+            if (helper is CartaHelperBriscola)
+                s += StessoSeme((helper as CartaHelperBriscola).GetCartaBriscola()) ? "*" : " ";
+            else
+                s += " ";
+            return s;
+        }
     }
 }
