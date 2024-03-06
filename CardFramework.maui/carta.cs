@@ -17,7 +17,7 @@ namespace org.altervista.numerone.framework
                    punteggio;
         private readonly string semeStr;
         private static CartaHelper helper;
-        private readonly static Carta[] carte = new Carta[40];
+        private static Carta[] carte;
         private Carta(UInt16 n, string s0, string s1, string s2, string s3)
         {
             seme = helper.GetSeme(n);
@@ -28,6 +28,7 @@ namespace org.altervista.numerone.framework
         public static void Inizializza(UInt16 n, CartaHelper h, string s0, string s1, string s2, string s3)
         {
             helper = h;
+            carte = new Carta[n];
             for (UInt16 i = 0; i < n; i++)
             {
                 carte[i] = new Carta(i, s0, s1, s2, s3);

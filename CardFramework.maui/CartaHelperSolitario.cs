@@ -1,7 +1,4 @@
-﻿using org.altervista.numerone.framework;
-
-
-namespace CardFramework.maui
+﻿namespace org.altervista.numerone.framework
 {
     public class CartaHelperSolitario : CartaHelper
     {
@@ -21,14 +18,14 @@ namespace CardFramework.maui
 
         public ushort GetNumero(ushort seme, ushort valore)
         {
-                if (seme > 4 || valore > 9)
-                    throw new ArgumentException($"Chiamato cartaHelperBriscola::getNumero con seme={seme} e valore={valore}");
-                return (ushort)(seme * 10 + valore);
+            if (seme > 4 || valore > 9)
+                throw new ArgumentException($"Chiamato cartaHelperBriscola::getNumero con seme={seme} e valore={valore}");
+            return (ushort)(seme * 10 + valore);
         }
 
         public ushort GetPunteggio(ushort Carta)
         {
-            throw new NotImplementedException();
+            return 0;
         }
 
         public ushort GetSeme(ushort Carta)
@@ -36,9 +33,9 @@ namespace CardFramework.maui
             return (ushort)(Carta / 10);
         }
 
-        public string GetSemeStr(ushort Carta, string s0, string s1, string s2, string s3)
+        public string GetSemeStr(ushort carta, string s0, string s1, string s2, string s3)
         {
-            throw new NotImplementedException();
+            return "";
         }
 
         public ushort GetValore(ushort Carta)
