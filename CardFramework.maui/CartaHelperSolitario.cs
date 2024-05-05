@@ -1,6 +1,6 @@
-﻿namespace org.altervista.numerone.framework
+﻿namespace org.altervista.numerone.framework.solitario
 {
-    public class CartaHelperSolitario : CartaHelper
+    public class CartaHelper : org.altervista.numerone.framework.CartaHelper
     {
         public int CompareTo(ushort carta, ushort carta1)
         {

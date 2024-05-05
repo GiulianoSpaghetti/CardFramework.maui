@@ -7,6 +7,7 @@
  *
  */
 
+
 namespace org.altervista.numerone.framework
 
 {
@@ -23,14 +24,29 @@ namespace org.altervista.numerone.framework
 			else
 				throw new ArgumentException("");
 		}
-		public UInt16 Gioca(UInt16 i, Carta[] v, UInt16 numeroCarte, Carta c)
+		public UInt16 Gioca(UInt16 i, Carta[] v, UInt16 numeroCarte, Carta c, bool stessoSeme)
 		{
-			return Gioca(i, v, numeroCarte);
-		}
+            UInt16 carta = Gioca(i, v, numeroCarte);
+            if (stessoSeme)
+            {
+                UInt16 j = 0;
+                if (!c.StessoSeme(v[carta]) && !v[i].StessoSeme(Carta.GetCartaBriscola()))
+                {
+                    for (j = 0; j < numeroCarte && !c.StessoSeme(v[j]); j++) ;
+                    if (j != numeroCarte)
+                        throw new Exception("Operazione non valida");
+                }
+            }
+            return carta;
+        }
 		public void AggiornaPunteggio(ref UInt16 punteggioAttuale, Carta c, Carta c1)
 		{
 			punteggioAttuale = (UInt16)(punteggioAttuale + c.GetPunteggio() + c1.GetPunteggio());
 		}
 
+        public ushort Gioca(ushort i, Carta[] v, ushort numeroCarte, List<Carta> piatto)
+        {
+            throw new NotImplementedException();
+        }
     };
 }

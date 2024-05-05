@@ -12,8 +12,9 @@ namespace org.altervista.numerone.framework
     public interface GiocatoreHelper
 	{
 		UInt16 Gioca(UInt16 i, Carta[] v, UInt16 numeroCarte);
-		UInt16 Gioca(UInt16 i, Carta[] v, UInt16 numeroCarte, Carta c);
-		void AggiornaPunteggio(ref UInt16 punteggio, Carta c, Carta c1);
+		UInt16 Gioca(UInt16 i, Carta[] v, UInt16 numeroCarte, Carta c, bool stessoSeme);
+        UInt16 Gioca(UInt16 i, Carta[] v, UInt16 numeroCarte, List<Carta> piatto);
+        void AggiornaPunteggio(ref UInt16 punteggio, Carta c, Carta c1);
 
     };
 }

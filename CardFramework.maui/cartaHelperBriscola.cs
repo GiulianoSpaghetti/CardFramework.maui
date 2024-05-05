@@ -7,11 +7,12 @@
  *
  */
 
-namespace org.altervista.numerone.framework
+namespace org.altervista.numerone.framework.briscola
 {
-    public class CartaHelperBriscola : CartaHelper {
+    public class CartaHelper : org.altervista.numerone.framework.CartaHelper
+    {
 		private readonly UInt16 CartaBriscola;
-		public CartaHelperBriscola(UInt16 briscola) { CartaBriscola = briscola; }
+		public CartaHelper(UInt16 briscola) { CartaBriscola = briscola; }
 		public UInt16 GetSeme(UInt16 Carta) {
 			return (UInt16)(Carta / 10);
 		}

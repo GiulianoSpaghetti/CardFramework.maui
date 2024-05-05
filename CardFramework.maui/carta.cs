@@ -54,13 +54,15 @@ namespace org.altervista.numerone.framework
             return $"n{seme * 10 + valore}";
         }
 
+        public static Carta GetCartaBriscola() { return (helper as org.altervista.numerone.framework.briscola.CartaHelper).GetCartaBriscola(); }
+
         public static void SetHelper(CartaHelper h) { helper = h; }
 
         public override string ToString()
         {
             string s = $"{valore + 1} di {semeStr}";
-            if (helper is CartaHelperBriscola)
-                s += StessoSeme((helper as CartaHelperBriscola).GetCartaBriscola()) ? "*" : " ";
+            if (helper is org.altervista.numerone.framework.briscola.CartaHelper)
+                s += StessoSeme((helper as org.altervista.numerone.framework.briscola.CartaHelper).GetCartaBriscola()) ? "*" : " ";
             else
                 s += " ";
             return s;

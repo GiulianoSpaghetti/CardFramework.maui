@@ -7,15 +7,16 @@
  *
  */
 
+
 namespace org.altervista.numerone.framework
 {
     public abstract class GiocatoreHelperCpu : GiocatoreHelper
     {
         protected readonly Carta briscola;
-        protected UInt16 GetBriscola(Carta[] mano)
+        protected UInt16 GetBriscola(Carta[] mano, UInt16 numeroCarte)
         {
             UInt16 i;
-            for (i = 0; i < mano.Length; i++)
+            for (i = 0; i < numeroCarte; i++)
                 if (briscola.StessoSeme(mano[i]))
                     break;
             return i;
@@ -24,13 +25,13 @@ namespace org.altervista.numerone.framework
         {
             briscola = Carta.GetCarta(b);
         }
-        protected UInt16 getSoprataglio(Carta[] mano, Carta c, bool maggiore)
+        protected UInt16 getSoprataglio(Carta[] mano, UInt16 numeroCarte, Carta c, bool maggiore)
         {
             bool trovata = false;
             UInt16 i;
             if (maggiore)
             {
-                for (i = (UInt16)(mano.Length - 1); i > 0; i--)
+                for (i = (UInt16)(numeroCarte - 1); i < numeroCarte; i--)
                     if (c.StessoSeme(mano[i]) && c.CompareTo(mano[i]) > 0)
                     {
                         trovata = true;
@@ -41,7 +42,7 @@ namespace org.altervista.numerone.framework
             }
             else
             {
-                for (i = 0; i < mano.Length; i++)
+                for (i = 0; i < numeroCarte; i++)
                     if (c.StessoSeme(mano[i]) && c.CompareTo(mano[i]) > 0)
                     {
                         trovata = true;
@@ -53,6 +54,15 @@ namespace org.altervista.numerone.framework
             else
                 return (UInt16)mano.Length;
         }
+        protected UInt16 GetPrimaCartaConSeme(Carta[] mano, UInt16 numeroCarte, Carta c)
+        {
+            UInt16 ca = numeroCarte;
+            for (UInt16 i = 0; i < numeroCarte && ca == numeroCarte; i++)
+                if (c.StessoSeme(mano[i]))
+                    ca = i;
+            return ca;
+
+        }
         public UInt16 Gioca(UInt16 x, Carta[] mano, UInt16 numeroCarte)
         {
             UInt16 i;
@@ -62,9 +72,14 @@ namespace org.altervista.numerone.framework
             return i;
 
         }
-        public abstract UInt16 Gioca(UInt16 x, Carta[] mano, UInt16 numeroCarte, Carta c);
+        public abstract UInt16 Gioca(UInt16 x, Carta[] mano, UInt16 numeroCarte, Carta c, bool stessoSemr);
         public void AggiornaPunteggio(ref UInt16 punteggioAttuale, Carta c, Carta c1) { punteggioAttuale = (UInt16)(punteggioAttuale + c.GetPunteggio() + c1.GetPunteggio()); }
 
         public abstract UInt16 GetLivello();
+
+        public ushort Gioca(ushort i, Carta[] v, ushort numeroCarte, List<Carta> piatto)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
