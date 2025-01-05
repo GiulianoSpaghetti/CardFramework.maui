@@ -1,3 +1,8 @@
+:it: Made in Italy. Il secondo framework italiano ad avere la documentazione inline.
+
+![Napoli-Logo](https://github.com/user-attachments/assets/fc1773c1-6823-429d-8760-e7d7e79f7d8f)
+![made in parco grifeo](https://github.com/user-attachments/assets/c1d40b56-101a-462f-9970-006c81937300)
+
 Framework di numerone in maui per la realizzazione di giochi di carte.
 La codebase è in .net, con l'aggiunta di un resourcedictionary da passare.
 Il resource dictionary deve includere 4 campi: bastoni, coppe, spade e denari da tradurre dall'italiano nella lingua desiderata, i 4 semi dei mazzi di carte italiane, o eventualmente francesi.
