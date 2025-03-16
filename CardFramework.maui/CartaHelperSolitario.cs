@@ -57,6 +57,10 @@
         /// retituisce il seme della carta indicata
         /// </summary>
         /// <param name="carta">carta di cui prendere il seme</param>
+        /// <param name="s0">Stringa indicante bastoni</param>
+        /// <param name="s1">Stringa indicante coppe</param>
+        /// <param name="s2">Stringa indicante denari</param>
+        /// <param name="s3">Stringa indicate spade</param>
         /// <returns>un numero intero, verosimilmemnte da 0 a 4</returns>
         public string GetSemeStr(ushort carta, string s0, string s1, string s2, string s3)
         {
