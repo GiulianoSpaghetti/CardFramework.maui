@@ -35,11 +35,11 @@ public class GiocatoreHelperCpu2 : GiocatoreHelperCpu
         {
             if ((i = getSoprataglio(mano, numeroCarte, c, true)) < numeroCarte)
                 return i;
-            if (c.GetPunteggio() > 0 && (i = GetBriscola(mano, numeroCarte)) < numeroCarte)
+            if (c.Punteggio > 0 && (i = GetBriscola(mano, numeroCarte)) < numeroCarte)
             {
-                if (c.GetPunteggio() > 4)
+                if (c.Punteggio > 4)
                     return i;
-                if (mano[i].GetPunteggio() > 0)
+                if (mano[i].Punteggio > 0)
                     if (ElaboratoreCarteBriscola.r.Next() % 10 < 5)
                         return i;
             }

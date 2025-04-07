@@ -106,7 +106,7 @@ namespace org.altervista.numerone.framework
         {
             UInt16 i;
             for (i = (UInt16)(numeroCarte - 1); i > 0; i--) ;
-            if ((mano[i].GetPunteggio() > 4 || briscola.StessoSeme(mano[i])))
+            if ((mano[i].Punteggio > 4 || briscola.StessoSeme(mano[i])))
                 i = 0;
             return i;
 
@@ -127,7 +127,7 @@ namespace org.altervista.numerone.framework
         /// <param name="punteggioAttuale">il punteggio da aggiornare</param>
         /// <param name="c">la prima carta giocata</param>
         /// <param name="c1">la seconda carta giocata</param>
-        public void AggiornaPunteggio(ref UInt16 punteggioAttuale, Carta c, Carta c1) { punteggioAttuale = (UInt16)(punteggioAttuale + c.GetPunteggio() + c1.GetPunteggio()); }
+        public void AggiornaPunteggio(ref UInt16 punteggioAttuale, Carta c, Carta c1) { punteggioAttuale = (UInt16)(punteggioAttuale + c.Punteggio + c1.Punteggio); }
         /// <summary>
         /// retituisce il livello di gioco
         /// </summary>

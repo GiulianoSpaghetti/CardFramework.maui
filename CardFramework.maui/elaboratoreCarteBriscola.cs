@@ -27,7 +27,8 @@ namespace org.altervista.numerone.framework
         /// <summary>
         /// la carta di briscola, la prima ad uscire
         /// </summary>
-        private UInt16 CartaBriscola;
+        private UInt16 cartaBriscola;
+        public UInt16 CartaBriscola { get => cartaBriscola; }
         /// <summary>
         /// indica se la carta di briscola deve essere salvata e se può essere di peso
         /// </summary>
@@ -79,22 +80,14 @@ namespace org.altervista.numerone.framework
 					{
 						Carta = (UInt16)(Carta - valore + 1);
 					}
-					CartaBriscola = Carta;
+					cartaBriscola = Carta;
 					inizio = false;
 				}
 				doppione[Carta] = true;
 				return Carta;
 			}
 		}
-        /// <summary>
-        /// restituisce la carta di briscola
-        /// </summary>
-        /// <returns>la carta di briscola in formato intero</returns>
-        public UInt16 GetCartaBriscola() { return CartaBriscola; }
-        /// <summary>
-        /// Dice quante carte sono rimaste nel mazzo
-        /// </summary>
-        /// <returns>Retituisce il numero di carte nel mazzo</returns>
+
         public ushort GetNumeroCarte()
         {
             return numeroCarte;

@@ -17,7 +17,7 @@ namespace org.altervista.numerone.framework
         /// <summary>
         /// nome del giocatore
         /// </summary>
-        private string nome;
+        public string Nome { get; set; }
         /// <summary>
         /// la mano del giocatire
         /// </summary>
@@ -25,11 +25,15 @@ namespace org.altervista.numerone.framework
         /// <summary>
         /// se la mano deve essere ordinata
         /// </summary>
-        private bool ordinaMano;
+        public bool OrdinaMano { get; set; }
 		/// <summary>
 		/// numero di carrte presenti nella mano, indice della carta presa in esame che è globale, indice della carta giocata e punteggio
 		/// </summary>
         private UInt16 numeroCarte, iCarta, iCartaGiocata, punteggio;
+        public Carta CartaGiocata { get => mano[iCartaGiocata]; }
+        public UInt16 Punteggio { get => punteggio; }
+        public UInt16 NumeroCarte { get => numeroCarte; }
+        public UInt16 ICartaGiocata { get => iCartaGiocata; }
         /// <summary>
         /// numero totale di carte presenti nella mano
         /// </summary>
@@ -49,35 +53,15 @@ namespace org.altervista.numerone.framework
         public Giocatore(GiocatoreHelper h, string n, UInt16 carte, bool ordina = true)
 		{
 			totaleCarte = carte;
-			ordinaMano = ordina;
+			OrdinaMano = ordina;
 			numeroCarte = carte;
 			iCartaGiocata = (UInt16)(CARTA_GIOCATA.NESSUNA_CARTA_GIOCATA);
 			punteggio = 0;
 			helper = h;
-			nome = n;
+			Nome = n;
 			mano = new Carta[totaleCarte];
 			iCarta = 0;
 		}
-	    /// <summary>
-		/// Getter del nome
-		/// </summary>
-		/// <returns>il nome del giocatore</returns>
-		public string GetNome() { return nome; }
-        /// <summary>
-        /// settere del nome
-        /// </summary>
-        /// <param name="n">nome del giocatore</param>
-        public void SetNome(string n) { nome = n; }
-        /// <summary>
-        /// setter del flag di ordinamento della mano
-        /// </summary>
-        /// <returns>se la mano deve essere ordinata o meno</returns>
-        public bool GetFlagOrdina() { return ordinaMano; }
-        /// <summary>
-        /// setter del flag di ordinameno della mano
-        /// </summary>
-        /// <param name="ordina"></param>
-        public void SetFlagOrdina(bool ordina) { ordinaMano = ordina; }
         /// <summary>
         /// Aggiunge una carta nella mano del giocatore, eventualmente ordinando e sostituendo la carta già giocata in precedenza se esiste. Se il mazzo non ha carte compatta la mano e diminuisce numeroCarte, ma non totaleCarte
         /// </summary>
@@ -146,19 +130,6 @@ namespace org.altervista.numerone.framework
 			return c;
 		}
         /// <summary>
-        /// getter della carta giocata
-        /// </summary>
-        /// <returns>la struttura indicante la carta giocata</returns>
-        public Carta GetCartaGiocata()
-		{
-			return mano[iCartaGiocata];
-		}
-        /// <summary>
-        /// setter del punteggio
-        /// </summary>
-        /// <returns>retituisce il punteggio corrente</returns>
-        public UInt16 GetPunteggio() { return punteggio; }
-        /// <summary>
         /// Se è l'utente imposta la carta giocata come i, se è il computer elabora una carta da giocare essendo il primo di mano
         /// </summary>
         /// <param name="i">vale solo come utente, indice della carta da giocare</param>
@@ -174,7 +145,7 @@ namespace org.altervista.numerone.framework
         /// <param name="stessoSeme">stabilisce se buosgna rispondere al seme</param>
         public void Gioca(UInt16 i, Giocatore g1, bool stessoSeme=false)
 		{
-			iCartaGiocata = helper.Gioca(i, mano, numeroCarte, g1.GetCartaGiocata(), stessoSeme);
+			iCartaGiocata = helper.Gioca(i, mano, numeroCarte, g1.CartaGiocata, stessoSeme);
 		}
         /// <summary>
         /// Aggiorna il puntegio sulla base delle carte giocate
@@ -183,7 +154,7 @@ namespace org.altervista.numerone.framework
         /// <returns>il punteggio attuale</returns>
         public UInt16 AggiornaPunteggio(Giocatore g)
 		{
-			helper.AggiornaPunteggio(ref punteggio, GetCartaGiocata(), g.GetCartaGiocata());
+			helper.AggiornaPunteggio(ref punteggio, CartaGiocata, g.CartaGiocata);
             return punteggio;
 		}
         /// <summary>
@@ -196,30 +167,14 @@ namespace org.altervista.numerone.framework
             iCartaGiocata = helper.Gioca(i, mano, numeroCarte, piatto);
         }
         /// <summary>
-        /// Restituiasce l'id carta che deve corrisondere a quella in xaml.
+        /// Restituisce l'id in xaml della carta presa in esame per associarla all'immagine
         /// </summary>
-        /// <returns>il valore mumerico della carta</returns>
-        /// <param name="quale">indice che rappresenta quale carta di mano deve essere</param>
+        /// <param name="quale">indice della carta</param>
+        /// <returns>una stringa indicante la carta che sia esistente in xaml</returns>
         public String GetID(UInt16 quale)
 		{
-			String s = mano[quale].GetID();
+			String s = mano[quale].Id;
 			return s;
-		}
-        /// <summary>
-        /// retituisce l'indice della carta giocata in mano all'utente
-        /// </summary>
-        /// <returns>indice della carta giocata in mano all'utente, può essere NESSUNA_CARTA_GIOCATA</returns>
-        public UInt16 GetICartaGiocata()
-		{
-			return iCartaGiocata;
-		}
-        /// <summary>
-        /// retituisce il numero di carte in mano all'utente
-        /// </summary>
-        /// <returns>il numero di carte in mano all'utente, che può essere inferiore a totaleCarte se il mazzo è finito</returns>
-        public UInt16 GetNumeroCarte()
-		{
-			return numeroCarte;
 		}
 	}
 

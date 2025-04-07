@@ -24,12 +24,12 @@
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<RepositoryUrl>https://github.com/GiulianoSpaghetti/CardFramework.maui</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
-		<PackageReleaseNotes>Ricompilato col dotnet 9.0.3 e maui 9.0.50</PackageReleaseNotes>
+		<PackageReleaseNotes>Ricompilato col dotnet 9.0.3 e maui 9.0.50, ora ha le property</PackageReleaseNotes>
 		<PackageTags>cards</PackageTags>
-		<FileVersion>1.4.2</FileVersion>
+		<FileVersion>1.5.0</FileVersion>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
 		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-		<Version>1.4.9</Version>
+		<Version>1.5.3</Version>
 		<AssemblyName>CardFramework.Maui</AssemblyName>
 		<WindowsPackageType>None</WindowsPackageType>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>

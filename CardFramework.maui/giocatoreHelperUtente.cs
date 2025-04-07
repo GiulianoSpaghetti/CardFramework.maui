@@ -51,7 +51,7 @@ namespace org.altervista.numerone.framework
             if (stessoSeme)
             {
                 UInt16 j = 0;
-                if (!c.StessoSeme(v[carta]) && !v[i].StessoSeme(Carta.GetCartaBriscola()))
+                if (!c.StessoSeme(v[carta]) && !v[i].StessoSeme(Carta.Briscola))
                 {
                     for (j = 0; j < numeroCarte && !c.StessoSeme(v[j]); j++) ;
                     if (j != numeroCarte)
@@ -68,7 +68,7 @@ namespace org.altervista.numerone.framework
         /// <param name="c1">la seconda carta giocata</param>
         public void AggiornaPunteggio(ref UInt16 punteggioAttuale, Carta c, Carta c1)
 		{
-			punteggioAttuale = (UInt16)(punteggioAttuale + c.GetPunteggio() + c1.GetPunteggio());
+			punteggioAttuale = (UInt16)(punteggioAttuale + c.Punteggio + c1.Punteggio);
 		}
         /// <summary>
         /// metodo da richiamare in presenza del piatto, deve costruirsi i grafi di gioco

@@ -14,9 +14,9 @@ Il codice di apertura deve essere:
     g = new Giocatore(new GiocatoreHelperUtente(), nomegiocatore, dimensionemano);
     switch (indicatore di livello)
     {
-	    case 1: helper = new GiocatoreHelperCpu0(e.GetCartaBriscola()); break;
-        case 2: helper = new GiocatoreHelperCpu1(e.GetCartaBriscola()); break;
-        default: helper = new GiocatoreHelperCpu2(e.GetCartaBriscola()); break;
+	    case 1: helper = new GiocatoreHelperCpu0(e.CartaBriscola); break;
+        case 2: helper = new GiocatoreHelperCpu1(e.CartaBriscola); break;
+        default: helper = new GiocatoreHelperCpu2(e.CartaBriscola); break;
     }
     cpu = new Giocatore(helper, nomegiocatore, dimensionemano);
     briscola = Carta.GetCarta(ElaboratoreCarteBriscola.GetCartaBriscola());
