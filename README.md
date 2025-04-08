@@ -1,4 +1,5 @@
 :it: Made in Italy. Il secondo framework italiano ad avere la documentazione inline.
+Il primo framework indipendente ad usare il linq.
 
 ![Napoli-Logo](https://github.com/user-attachments/assets/fc1773c1-6823-429d-8760-e7d7e79f7d8f)
 ![made in parco grifeo](https://github.com/user-attachments/assets/c1d40b56-101a-462f-9970-006c81937300)
@@ -35,3 +36,9 @@ Se avete un gioco di carte sul piatto, il modo di agire dei giocatori profession
 Al momento copre la briscola ed il poker, col poker che si fissa sul seme "primo di mano".
 
 Siete liberi di espanderlo con i grafi di presa.
+
+Usa il linq sugli array, ed è il primo assembly indipendente a farlo, su android pare funzionare correttamemnte, su windows no, per via dell'ottimizzazione del framework.
+
+## Donazioni
+
+http://numerone.altervista.org/donazioni.php
