@@ -39,6 +39,10 @@ Siete liberi di espanderlo con i grafi di presa.
 
 Usa il linq sugli array, ed è il primo assembly indipendente a farlo, su android pare funzionare correttamemnte, su windows no, per via dell'ottimizzazione del framework.
 
+## Come ottenere
+
+https://www.nuget.org/packages/CardFramework.maui
+
 ## Donazioni
 
 http://numerone.altervista.org/donazioni.php
