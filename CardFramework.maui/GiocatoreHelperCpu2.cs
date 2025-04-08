@@ -30,7 +30,7 @@ public class GiocatoreHelperCpu2 : GiocatoreHelperCpu
     /// <returns>indice di mano indicante la carta da giocare</returns>
     public override ushort Gioca(ushort x, Carta[] mano, ushort numeroCarte, Carta c, bool stessoSeme)
     {
-                UInt16 i = (UInt16)ElaboratoreCarteBriscola.r.Next(0, UInt16.MaxValue);
+        UInt16 i = (UInt16)ElaboratoreCarteBriscola.r.Next(0, UInt16.MaxValue);
         if (!briscola.StessoSeme(c))
         {
                 if ((i = getSoprataglio(mano, numeroCarte, c, true)) < numeroCarte)

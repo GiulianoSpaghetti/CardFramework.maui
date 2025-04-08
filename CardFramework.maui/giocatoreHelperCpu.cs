@@ -22,6 +22,8 @@ namespace org.altervista.numerone.framework
         /// struttura indicante la carta di briscola
         /// </summary>
         protected readonly Carta briscola;
+        protected UInt16 vecchioSemeGiocato; //servono per il poker
+        protected bool primoDiMano;
         /// <summary>
         /// Retituisce la prima carta di briscola (la più piccola in mano al giocatore)
         /// </summary>
@@ -42,6 +44,8 @@ namespace org.altervista.numerone.framework
         public GiocatoreHelperCpu(UInt16 b)
         {
             briscola = Carta.GetCarta(b);
+            vecchioSemeGiocato = 5;
+            primoDiMano = false;
         }
 
         /// <summary>
@@ -87,9 +91,14 @@ namespace org.altervista.numerone.framework
         /// <param name="mano">vettore delle carte da prendere in esame</param>
         /// <param name="numeroCarte">dimensione del vettore delle carte</param>
         /// <returns>l'indice dela carta da giocare</returns>
-        public UInt16 Gioca(UInt16 x, Carta[] mano, UInt16 numeroCarte)
+        public UInt16 Gioca(UInt16 x, Carta[] mano, UInt16 numeroCarte, bool stessoSeme = false)
         {
-           int i = Array.FindIndex(mano, 0, numeroCarte, q => (q.Punteggio > 1 && q.Punteggio<5) && q.Seme!=briscola.Seme);
+            int i=-1;
+            
+            if (primoDiMano)
+                i = Array.FindLastIndex(mano, numeroCarte-1, numeroCarte, q => (q.Seme == vecchioSemeGiocato));
+            if (!primoDiMano || i == -1)
+                i =Array.FindIndex(mano, 0, numeroCarte, q => (q.Punteggio > 1 && q.Punteggio<5) && q.Seme!=briscola.Seme);
             if (i == -1)
                 i = Array.FindIndex(mano, 0, numeroCarte, q => q.Punteggio==0);
             if (i==-1)
@@ -97,8 +106,12 @@ namespace org.altervista.numerone.framework
 
             if (i >= numeroCarte || i<0)
                 i = 0;
+            if (stessoSeme)
+            {
+                primoDiMano = true;
+                vecchioSemeGiocato = mano[i].Seme;
+            }
             return (UInt16)i;
-
         }
         /// <summary>
         /// Se è il secondo di mano sceglie quale carta giocare sulla base della carta giocata e se bisogna rispondere al seme

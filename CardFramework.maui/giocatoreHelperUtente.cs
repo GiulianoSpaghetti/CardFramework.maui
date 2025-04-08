@@ -28,7 +28,7 @@ namespace org.altervista.numerone.framework
         /// <param name="numeroCarte">dimensione del vettore delle carte</param>
         /// <returns>semplicemente i</returns>
         /// <exception cref="ArgumentException">se i non è nel range</exception>
-        public UInt16 Gioca(UInt16 i, Carta[] v, UInt16 numeroCarte)
+        public UInt16 Gioca(UInt16 i, Carta[] v, UInt16 numeroCarte, bool stessoSeme = false)
 		{
 			if (i < numeroCarte)
 				return i;

@@ -21,7 +21,7 @@ namespace org.altervista.numerone.framework
         /// <param name="v">vettore delle carte da giocare se è il computer</param>
         /// <param name="numeroCarte">dimensione di v</param>
         /// <returns>indice di v indicante la carta giocata</returns>
-        UInt16 Gioca(UInt16 i, Carta[] v, UInt16 numeroCarte);
+        UInt16 Gioca(UInt16 i, Carta[] v, UInt16 numeroCarte, bool stessoSeme=false);
         /// <summary>
         /// Gioca se è il secondo di mano, se è l'utente deve restituire i, se è la cpu deve restituire l'indice in mano a v indicante il numero della carta da giocare in base a c e stessoSeme
         /// </summary>

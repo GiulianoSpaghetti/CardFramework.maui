@@ -133,9 +133,9 @@ namespace org.altervista.numerone.framework
         /// Se è l'utente imposta la carta giocata come i, se è il computer elabora una carta da giocare essendo il primo di mano
         /// </summary>
         /// <param name="i">vale solo come utente, indice della carta da giocare</param>
-        public void Gioca(UInt16 i)
+        public void Gioca(UInt16 i, bool stessoSeme=false)
 		{
-			iCartaGiocata = helper.Gioca(i, mano, numeroCarte);
+			iCartaGiocata = helper.Gioca(i, mano, numeroCarte, stessoSeme);
 		}
         /// <summary>
         /// Se è l'utente imposta la carta giocata come i, se è il computer elabora una carta da giocare essendo il secondo di mano
