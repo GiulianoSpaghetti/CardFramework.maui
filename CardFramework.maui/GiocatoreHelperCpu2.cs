@@ -53,6 +53,8 @@ public class GiocatoreHelperCpu2 : GiocatoreHelperCpu
             i = GetPrimaCartaConSeme(mano, numeroCarte, c);
         if (i >= numeroCarte)
             i = 0;
+        vecchioSemeGiocato = 5;
+        primoDiMano = false;
         return i;
     }
 }

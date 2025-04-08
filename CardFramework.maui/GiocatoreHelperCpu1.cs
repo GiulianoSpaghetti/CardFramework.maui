@@ -47,6 +47,8 @@
                     carta = GetPrimaCartaConSeme(mano, numeroCarte, c);
                 else
                     carta = 0;
+            vecchioSemeGiocato = 5;
+            primoDiMano = false;
             return carta;
         }
     }
