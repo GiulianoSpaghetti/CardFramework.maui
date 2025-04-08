@@ -56,9 +56,9 @@ namespace org.altervista.numerone.framework
         {
             int i;
             if (maggiore)
-                i=Array.FindLastIndex(mano, 0, numeroCarte-1, q => (q.Punteggio>c.Punteggio && q.Seme==c.Seme));
+                i=Array.FindLastIndex(mano, numeroCarte-1, numeroCarte, q => (q.Punteggio>c.Punteggio && q.Seme==c.Seme));
             else
-                i = Array.FindIndex(mano, 0, numeroCarte-1, q => (q.Punteggio > c.Punteggio && q.Seme == c.Seme));
+                i = Array.FindIndex(mano, 0, numeroCarte, q => (q.Punteggio > c.Punteggio && q.Seme == c.Seme));
 
             if (i == -1)
                 return (UInt16)mano.Length;
@@ -75,7 +75,7 @@ namespace org.altervista.numerone.framework
         /// <returns>indice della carta se trovata, numeroCarte altrimenti</returns>
         protected UInt16 GetPrimaCartaConSeme(Carta[] mano, UInt16 numeroCarte, Carta c)
         {
-            int i=Array.FindIndex(mano, 0, numeroCarte - 1, q => q.Seme == c.Seme);
+            int i=Array.FindIndex(mano, 0, numeroCarte, q => q.Seme == c.Seme);
             if (i >= numeroCarte)
                 i = (UInt16)mano.Length;
             return (UInt16)i;
@@ -89,11 +89,11 @@ namespace org.altervista.numerone.framework
         /// <returns>l'indice dela carta da giocare</returns>
         public UInt16 Gioca(UInt16 x, Carta[] mano, UInt16 numeroCarte)
         {
-           int i = Array.FindIndex(mano, 0, numeroCarte - 1, q => (q.Punteggio > 1 && q.Punteggio<5) && q.Seme!=briscola.Seme);
+           int i = Array.FindIndex(mano, 0, numeroCarte, q => (q.Punteggio > 1 && q.Punteggio<5) && q.Seme!=briscola.Seme);
             if (i == -1)
-                i = Array.FindIndex(mano, 0, numeroCarte - 1, q => q.Punteggio==0);
+                i = Array.FindIndex(mano, 0, numeroCarte, q => q.Punteggio==0);
             if (i==-1)
-                i = Array.FindIndex(mano,0, numeroCarte - 1, q => q.Seme==briscola.Seme);
+                i = Array.FindIndex(mano,0, numeroCarte, q => q.Seme==briscola.Seme);
 
             if (i >= numeroCarte || i<0)
                 i = 0;
