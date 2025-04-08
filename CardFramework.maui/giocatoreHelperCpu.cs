@@ -8,6 +8,9 @@
  */
 
 
+using Microsoft.Maui.Controls.Internals;
+using System;
+
 namespace org.altervista.numerone.framework
 {
     /// <summary>
@@ -27,11 +30,10 @@ namespace org.altervista.numerone.framework
         /// <returns>indice della carta giocata indicante la briscoola più piccola</returns>
         protected UInt16 GetBriscola(Carta[] mano, UInt16 numeroCarte)
         {
-            UInt16 i;
-            for (i = 0; i < numeroCarte; i++)
-                if (briscola.StessoSeme(mano[i]))
-                    break;
-            return i;
+            int i= Array.FindIndex(mano, 0, numeroCarte, q => q.Seme == briscola.Seme);
+            if (i>numeroCarte)
+                i = (UInt16)mano.Length;
+            return (UInt16) i;
         }
         /// <summary>
         /// Inizializza la struttura portandosi il seme di briscola
@@ -52,32 +54,17 @@ namespace org.altervista.numerone.framework
         /// <returns>indice della carta se trovata, numeroCarte altrimenti</returns>
         protected UInt16 getSoprataglio(Carta[] mano, UInt16 numeroCarte, Carta c, bool maggiore)
         {
-            bool trovata = false;
-            UInt16 i;
+            int i;
             if (maggiore)
-            {
-                for (i = (UInt16)(numeroCarte - 1); i < numeroCarte; i--)
-                    if (c.StessoSeme(mano[i]) && c.CompareTo(mano[i]) > 0)
-                    {
-                        trovata = true;
-                        break;
-                    }
-                    else if (c.StessoSeme(mano[i]) && mano[i].CompareTo(c) > 0)
-                        break;
-            }
+                i=Array.FindLastIndex(mano, 0, numeroCarte-1, q => (q.Punteggio>c.Punteggio && q.Seme==c.Seme));
             else
-            {
-                for (i = 0; i < numeroCarte; i++)
-                    if (c.StessoSeme(mano[i]) && c.CompareTo(mano[i]) > 0)
-                    {
-                        trovata = true;
-                        break;
-                    }
-            }
-            if (trovata)
-                return i;
-            else
+                i = Array.FindIndex(mano, 0, numeroCarte-1, q => (q.Punteggio > c.Punteggio && q.Seme == c.Seme));
+
+            if (i == -1)
                 return (UInt16)mano.Length;
+            if (i>numeroCarte)
+                i = (UInt16) mano.Length;
+            return (UInt16) i;
         }
         /// <summary>
         /// Retituisce la prima carta dello stesso seme in mano al giocatore indipendentemente se sia più grande o no
@@ -88,12 +75,10 @@ namespace org.altervista.numerone.framework
         /// <returns>indice della carta se trovata, numeroCarte altrimenti</returns>
         protected UInt16 GetPrimaCartaConSeme(Carta[] mano, UInt16 numeroCarte, Carta c)
         {
-            UInt16 ca = numeroCarte;
-            for (UInt16 i = 0; i < numeroCarte && ca == numeroCarte; i++)
-                if (c.StessoSeme(mano[i]))
-                    ca = i;
-            return ca;
-
+            int i=Array.FindIndex(mano, 0, numeroCarte - 1, q => q.Seme == c.Seme);
+            if (i >= numeroCarte)
+                i = (UInt16)mano.Length;
+            return (UInt16)i;
         }
         /// <summary>
         /// se è il primo di mano cerca la carta più difficile da prendere
@@ -104,11 +89,15 @@ namespace org.altervista.numerone.framework
         /// <returns>l'indice dela carta da giocare</returns>
         public UInt16 Gioca(UInt16 x, Carta[] mano, UInt16 numeroCarte)
         {
-            UInt16 i;
-            for (i = (UInt16)(numeroCarte - 1); i > 0; i--) ;
-            if ((mano[i].Punteggio > 4 || briscola.StessoSeme(mano[i])))
+           int i = Array.FindIndex(mano, 0, numeroCarte - 1, q => (q.Punteggio > 1 && q.Punteggio<5) && q.Seme!=briscola.Seme);
+            if (i == -1)
+                i = Array.FindIndex(mano, 0, numeroCarte - 1, q => q.Punteggio==0);
+            if (i==-1)
+                i = Array.FindIndex(mano,0, numeroCarte - 1, q => q.Seme==briscola.Seme);
+
+            if (i >= numeroCarte || i<0)
                 i = 0;
-            return i;
+            return (UInt16)i;
 
         }
         /// <summary>
