@@ -1,9 +1,8 @@
 /*
-  *  This code is distribuited under GPL 3.0 or, at your opinion, any later version
- *  CBriscola 1.1.3
+ *  This code is distribuited under GPL 3.0 or, at your opinion, any later version
  *
- *  Created by Giulio Sorrentino (numerone) on 29/01/23.
- *  Copyright 2023 Some rights reserved.
+ *  Created by Giulio Sorrentino (numerone, Giuliano Spaghetti).
+ *  Copyright 2023-2025 Some rights reserved.
  *
  */
 
@@ -27,8 +26,7 @@ namespace org.altervista.numerone.framework
         /// <summary>
         /// la carta di briscola, la prima ad uscire
         /// </summary>
-        private UInt16 cartaBriscola;
-        public UInt16 CartaBriscola { get => cartaBriscola; }
+        public UInt16 CartaBriscola { get; private set; }
         /// <summary>
         /// indica se la carta di briscola deve essere salvata e se può essere di peso
         /// </summary>
@@ -80,7 +78,7 @@ namespace org.altervista.numerone.framework
 					{
 						Carta = (UInt16)(Carta - valore + 1);
 					}
-					cartaBriscola = Carta;
+					CartaBriscola = Carta;
 					inizio = false;
 				}
 				doppione[Carta] = true;

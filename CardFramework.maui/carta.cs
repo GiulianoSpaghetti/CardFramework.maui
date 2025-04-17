@@ -1,10 +1,9 @@
 
 /*
-  *  This code is distribuited under GPL 3.0 or, at your opinion, any later version
- *  CBriscola 1.1.3
+ *  This code is distribuited under GPL 3.0 or, at your opinion, any later version
  *
- *  Created by Giulio Sorrentino (numerone) on 29/01/23.
- *  Copyright 2023 Some rights reserved.
+ *  Created by Giulio Sorrentino (numerone, Giuliano Spaghetti).
+ *  Copyright 2023-2025 Some rights reserved.
  *
  */
 
@@ -14,18 +13,44 @@ namespace org.altervista.numerone.framework
      /// </summary>
     public class Carta
     {
-        private readonly UInt16 seme,
-                   valore,
-                   punteggio;
-        private readonly string semeStr;
-        public UInt16 Seme { get => seme; }
-        public UInt16 Valore { get => valore; }
-        public UInt16 Punteggio { get => punteggio; }
-        public string SemeStr { get => semeStr; }
-        public string Id { get => $"n{Helper.GetNumero(seme, valore)}";}
+        /// <summary>
+        /// Prefisso delle immagini delle carte in xaml
+        /// </summary>
+        private const char prefisso= 'n';
+        /// <summary>
+        /// Seme della carta
+        /// </summary>
+        public UInt16 Seme { get; init; }
+        /// <summary>
+        /// Valore, non punteggio, della carta
+        /// </summary>
+        public UInt16 Valore { get; init; }
+        /// <summary>
+        /// Puntegguio della carta
+        /// </summary>
+        public UInt16 Punteggio { get; init; }
+        /// <summary>
+        /// Seme della carta in formato stringa
+        /// </summary>
+        public string SemeStr { get; private set; }
+        /// <summary>
+        /// Id che identifica la figura della carta: deve esistere nell'xaml
+        /// </summary>
+        public string Id { get => $"{prefisso}{Helper.GetNumero(Seme, Valore)}";}
+        /// <summary>
+        /// Struttura della carta che designa il seme di briscola
+        /// </summary>
         public static Carta Briscola { get => (Helper as org.altervista.numerone.framework.briscola.CartaHelper).GetCartaBriscola(); }
-        private static CartaHelper helper;
-        public static CartaHelper Helper { get => helper; }
+        /// <summary>
+        /// Helper per personalizzare il comportamento della classe carta
+        /// </summary>
+        /// <summary>
+        /// Helper per personalizzare il comportamento della classe carta
+        /// </summary>
+        public static CartaHelper Helper { get; private set; }
+        /// <summary>
+        /// Vettore dlle carte
+        /// </summary>
         private static Carta[] carte;
         /// <summary>
         /// Costruttore privato perché le carte devono essere immutabili.
@@ -37,10 +62,10 @@ namespace org.altervista.numerone.framework
         /// <param name="s3">quarta delle 4 stringhe indicante il seme italiano</param>
         private Carta(UInt16 n, string s0, string s1, string s2, string s3)
         {
-            seme = Helper.GetSeme(n);
-            valore = Helper.GetValore(n);
-            punteggio = Helper.GetPunteggio(n);
-            semeStr = Helper.GetSemeStr(n, s0, s1, s2, s3);
+            Seme = Helper.GetSeme(n);
+            Valore = Helper.GetValore(n);
+            Punteggio = Helper.GetPunteggio(n);
+            SemeStr = Helper.GetSemeStr(n, s0, s1, s2, s3);
         }
         /// <summary>
         /// Vero costruttore, identifica un numero di carte pari ad n ed inizializza il vettore delle carte
@@ -53,7 +78,7 @@ namespace org.altervista.numerone.framework
         /// <param name="s3">quarta delle 4 stringhe indicante il seme italiano</param>
         public static void Inizializza(UInt16 n, CartaHelper h, string s0, string s1, string s2, string s3)
         {
-            helper = h;
+            Helper = h;
             carte = new Carta[n];
             for (UInt16 i = 0; i < n; i++)
             {
@@ -72,7 +97,7 @@ namespace org.altervista.numerone.framework
         /// </summary>
         /// <param name="c1">carta con cui confrontare il seme, può essere null</param>
         /// <returns>true se la carta chiamante ha lo stesso seme di c1</returns>
-        public bool StessoSeme(Carta c1) { if (c1 == null) return false; else return seme == c1.Seme; }
+        public bool StessoSeme(Carta c1) { if (c1 == null) return false; else return Seme == c1.Seme; }
         /// <summary>
         /// Compara due carte
         /// </summary>
@@ -87,18 +112,23 @@ namespace org.altervista.numerone.framework
         }
         public override string ToString()
         {
-            string s = $"{valore + 1} di {semeStr}";
+            string s = $"{Valore + 1} di {SemeStr}";
             if (Helper is org.altervista.numerone.framework.briscola.CartaHelper)
                 s += StessoSeme((Helper as org.altervista.numerone.framework.briscola.CartaHelper).GetCartaBriscola()) ? "*" : " ";
             else
                 s += " ";
             return s;
         }
+        /// <summary>
+        /// Imposta l'helper della classe carta, se ad inizio partita
+        /// </summary>
+        /// <param name="h">L'helper da importare</param>
+        /// <param name="m">Mazzo per certificare che si è all'inizio della partita</param>
         public static void SetHelper(CartaHelper h, Mazzo m)
         {
             if (m.GetNumeroCarte() == carte.Length)
             {
-                helper = h;
+                Helper = h;
             }
         }
     }

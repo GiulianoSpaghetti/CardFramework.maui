@@ -1,8 +1,7 @@
 /*
-  *  This code is distribuited under GPL 3.0 or, at your opinion, any later version
- *  CBriscola 1.1.3
+ *  This code is distribuited under GPL 3.0 or, at your opinion, any later version
  *
- *  Created by Giulio Sorrentino (numerone) on 29/01/23.
+ *  Created by Giulio Sorrentino (numerone, Giuliano Spaghetti).
  *  Copyright 2023 Some rights reserved.
  *
  */

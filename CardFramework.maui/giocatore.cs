@@ -1,9 +1,8 @@
 /*
-  *  This code is distribuited under GPL 3.0 or, at your opinion, any later version
- *  CBriscola 1.1.3
+ *  This code is distribuited under GPL 3.0 or, at your opinion, any later version
  *
- *  Created by Giulio Sorrentino (numerone) on 29/01/23.
- *  Copyright 2023 Some rights reserved.
+ *  Created by Giulio Sorrentino (numerone, Giuliano Spaghetti).
+ *  Copyright 2023-2025 Some rights reserved.
  *
  */
 
@@ -27,13 +26,13 @@ namespace org.altervista.numerone.framework
         /// </summary>
         public bool OrdinaMano { get; set; }
 		/// <summary>
-		/// numero di carrte presenti nella mano, indice della carta presa in esame che è globale, indice della carta giocata e punteggio
+		/// indice della carta presa in esame
 		/// </summary>
-        private UInt16 numeroCarte, iCarta, iCartaGiocata, punteggio;
-        public Carta CartaGiocata { get => mano[iCartaGiocata]; }
-        public UInt16 Punteggio { get => punteggio; }
-        public UInt16 NumeroCarte { get => numeroCarte; }
-        public UInt16 ICartaGiocata { get => iCartaGiocata; }
+        private UInt16 iCarta;
+        public Carta CartaGiocata { get => mano[ICartaGiocata]; }
+        public UInt16 Punteggio { get; private set; }
+        public UInt16 NumeroCarte { get; private set; }
+        public UInt16 ICartaGiocata { get; private set; }
         /// <summary>
         /// numero totale di carte presenti nella mano
         /// </summary>
@@ -54,9 +53,9 @@ namespace org.altervista.numerone.framework
 		{
 			totaleCarte = carte;
 			OrdinaMano = ordina;
-			numeroCarte = carte;
-			iCartaGiocata = (UInt16)(CARTA_GIOCATA.NESSUNA_CARTA_GIOCATA);
-			punteggio = 0;
+			NumeroCarte = carte;
+			ICartaGiocata = (UInt16)(CARTA_GIOCATA.NESSUNA_CARTA_GIOCATA);
+			Punteggio = 0;
 			helper = h;
 			Nome = n;
 			mano = new Carta[totaleCarte];
@@ -71,14 +70,14 @@ namespace org.altervista.numerone.framework
 		{
 			UInt16 i = 0;
 			Carta temp;
-			if (iCarta == numeroCarte && iCartaGiocata == (UInt16)CARTA_GIOCATA.NESSUNA_CARTA_GIOCATA)
-				throw new ArgumentException($"Chiamato Giocatore::setCarta con mano.size()==numeroCarte=={numeroCarte}");
-			if (iCartaGiocata != (UInt16)CARTA_GIOCATA.NESSUNA_CARTA_GIOCATA)
+			if (iCarta == NumeroCarte && ICartaGiocata == (UInt16)CARTA_GIOCATA.NESSUNA_CARTA_GIOCATA)
+				throw new ArgumentException($"Chiamato Giocatore::setCarta con mano.size()==numeroCarte=={NumeroCarte}");
+			if (ICartaGiocata != (UInt16)CARTA_GIOCATA.NESSUNA_CARTA_GIOCATA)
 			{
-				for (i = iCartaGiocata; i < numeroCarte - 1; i++)
+				for (i = ICartaGiocata; i < NumeroCarte - 1; i++)
 					mano[i] = mano[i + 1];
 				mano[i] = null;
-				iCartaGiocata = (UInt16)CARTA_GIOCATA.NESSUNA_CARTA_GIOCATA;
+				ICartaGiocata = (UInt16)CARTA_GIOCATA.NESSUNA_CARTA_GIOCATA;
 				mano[iCarta - 1] = SostituisciCartaGiocata(m);
 				for (i = (UInt16)(iCarta - 2); i < UInt16.MaxValue && iCarta > 1 && mano[i].CompareTo(mano[i + 1]) < 0; i--)
 				{
@@ -102,7 +101,7 @@ namespace org.altervista.numerone.framework
 			UInt16 j = 0;
 			Carta c = SostituisciCartaGiocata(m);
 			for (i = 0; i < iCarta && mano[i] != null && c.CompareTo(mano[i]) < 0; i++) ;
-			for (j = (UInt16)(numeroCarte - 1); j > i; j--)
+			for (j = (UInt16)(NumeroCarte - 1); j > i; j--)
 				mano[j] = mano[j - 1];
 			mano[i] = c;
 			iCarta++;
@@ -121,11 +120,11 @@ namespace org.altervista.numerone.framework
 			}
 			catch (IndexOutOfRangeException e)
 			{
-				numeroCarte--;
+				NumeroCarte--;
 				iCarta--;
-				if (numeroCarte == 0)
+				if (NumeroCarte == 0)
 					throw e;
-				return mano[numeroCarte];
+				return mano[NumeroCarte];
 			}
 			return c;
 		}
@@ -135,7 +134,7 @@ namespace org.altervista.numerone.framework
         /// <param name="i">vale solo come utente, indice della carta da giocare</param>
         public void Gioca(UInt16 i, bool stessoSeme=false)
 		{
-			iCartaGiocata = helper.Gioca(i, mano, numeroCarte, stessoSeme);
+			ICartaGiocata = helper.Gioca(i, mano, NumeroCarte, stessoSeme);
 		}
         /// <summary>
         /// Se è l'utente imposta la carta giocata come i, se è il computer elabora una carta da giocare essendo il secondo di mano
@@ -145,7 +144,7 @@ namespace org.altervista.numerone.framework
         /// <param name="stessoSeme">stabilisce se buosgna rispondere al seme</param>
         public void Gioca(UInt16 i, Giocatore g1, bool stessoSeme=false)
 		{
-			iCartaGiocata = helper.Gioca(i, mano, numeroCarte, g1.CartaGiocata, stessoSeme);
+			ICartaGiocata = helper.Gioca(i, mano, NumeroCarte, g1.CartaGiocata, stessoSeme);
 		}
         /// <summary>
         /// Aggiorna il puntegio sulla base delle carte giocate
@@ -154,8 +153,8 @@ namespace org.altervista.numerone.framework
         /// <returns>il punteggio attuale</returns>
         public UInt16 AggiornaPunteggio(Giocatore g)
 		{
-			helper.AggiornaPunteggio(ref punteggio, CartaGiocata, g.CartaGiocata);
-            return punteggio;
+			Punteggio=helper.AggiornaPunteggio(Punteggio, CartaGiocata, g.CartaGiocata);
+            return Punteggio;
 		}
         /// <summary>
         /// Se è l'utente deve impostare iCartaGiocata ad i, se è il computer deve costruirsi i grafi di presa sulla base delle carte in mano e del piatto per stabilirsi cosa giocare
@@ -164,7 +163,7 @@ namespace org.altervista.numerone.framework
         /// <param name="piatto">il piatto</param>
         public void Gioca(UInt16 i, List<Carta> piatto)
         {
-            iCartaGiocata = helper.Gioca(i, mano, numeroCarte, piatto);
+            ICartaGiocata = helper.Gioca(i, mano, NumeroCarte, piatto);
         }
         /// <summary>
         /// Restituisce l'id in xaml della carta presa in esame per associarla all'immagine

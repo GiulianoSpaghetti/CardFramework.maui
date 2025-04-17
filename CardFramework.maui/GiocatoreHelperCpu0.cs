@@ -1,4 +1,11 @@
-﻿namespace org.altervista.numerone.framework
+﻿/*
+ *  This code is distribuited under GPL 3.0 or, at your opinion, any later version
+ *
+ *  Created by Giulio Sorrentino (numerone, Giuliano Spaghetti).
+ *  Copyright 2023-2025 Some rights reserved.
+ *
+ */
+namespace org.altervista.numerone.framework
 {
     /// <summary>
     /// Classe che implementa il comportamento di un giocatore CPU di livello 1

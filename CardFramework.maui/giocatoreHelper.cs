@@ -1,9 +1,8 @@
 /*
-  *  This code is distribuited under GPL 3.0 or, at your opinion, any later version
- *  CBriscola 1.1.3
+ *  This code is distribuited under GPL 3.0 or, at your opinion, any later version
  *
- *  Created by Giulio Sorrentino (numerone) on 29/01/23.
- *  Copyright 2023 Some rights reserved.
+ *  Created by Giulio Sorrentino (numerone, Giuliano Spaghetti).
+ *  Copyright 2023-2025 Some rights reserved.
  *
  */
 
@@ -47,7 +46,8 @@ namespace org.altervista.numerone.framework
         /// <param name="punteggio">il punteggio da aggiornare</param>
         /// <param name="c">la prima carta giocata</param>
         /// <param name="c1">la seconda carta g</param>
-        void AggiornaPunteggio(ref UInt16 punteggio, Carta c, Carta c1);
+        /// <returns>il punteggio aggiornato</returns>
+        UInt16 AggiornaPunteggio(UInt16 punteggio, Carta c, Carta c1);
 
     };
 }
