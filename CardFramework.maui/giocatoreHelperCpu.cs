@@ -20,16 +20,16 @@ namespace org.altervista.numerone.framework
         /// <summary>
         /// struttura indicante la carta di briscola
         /// </summary>
-        protected readonly Carta briscola;
-        protected UInt16 vecchioSemeGiocato; //servono per il poker
-        protected bool primoDiMano;
+        internal readonly Carta briscola;
+        internal UInt16 vecchioSemeGiocato; //servono per il poker
+        internal bool primoDiMano;
         /// <summary>
         /// Retituisce la prima carta di briscola (la più piccola in mano al giocatore)
         /// </summary>
         /// <param name="mano">mano del giocatore</param>
         /// <param name="numeroCarte">numero di carte</param>
         /// <returns>indice della carta giocata indicante la briscoola più piccola</returns>
-        protected UInt16 GetBriscola(Carta[] mano, UInt16 numeroCarte)
+        internal UInt16 GetBriscola(Carta[] mano, UInt16 numeroCarte)
         {
             int i= Array.FindIndex(mano, 0, numeroCarte, q => q.Seme == briscola.Seme);
             if (i>numeroCarte)
@@ -55,7 +55,7 @@ namespace org.altervista.numerone.framework
         /// <param name="c">carta giocata</param>
         /// <param name="maggiore">stabilisce se devee essere quella subito superiore o la più grande in assoluto</param>
         /// <returns>indice della carta se trovata, numeroCarte altrimenti</returns>
-        protected UInt16 getSoprataglio(Carta[] mano, UInt16 numeroCarte, Carta c, bool maggiore)
+        internal UInt16 getSoprataglio(Carta[] mano, UInt16 numeroCarte, Carta c, bool maggiore)
         {
             int i;
             if (maggiore)
@@ -76,7 +76,7 @@ namespace org.altervista.numerone.framework
         /// <param name="numeroCarte">dimensione del vettore</param>
         /// <param name="c">carta giocata dall'altro giocatore</param>
         /// <returns>indice della carta se trovata, numeroCarte altrimenti</returns>
-        protected UInt16 GetPrimaCartaConSeme(Carta[] mano, UInt16 numeroCarte, Carta c)
+        internal UInt16 GetPrimaCartaConSeme(Carta[] mano, UInt16 numeroCarte, Carta c)
         {
             int i=Array.FindIndex(mano, 0, numeroCarte, q => q.Seme == c.Seme);
             if (i >= numeroCarte)

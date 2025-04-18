@@ -128,6 +128,7 @@ namespace org.altervista.numerone.framework
         {
             if (m.GetNumeroCarte() == carte.Length)
             {
+                CartaHelper h1 = Helper;
                 Helper = h;
             }
         }

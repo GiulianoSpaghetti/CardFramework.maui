@@ -24,12 +24,12 @@
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<RepositoryUrl>https://github.com/GiulianoSpaghetti/CardFramework.maui</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
-		<PackageReleaseNotes>Ricompilato col dotnet 9.0.4 e maui 9.0.60, oraso no stati eliminati mlti backing fieldso</PackageReleaseNotes>
+		<PackageReleaseNotes>Ricompilato col dotnet 9.0.4 e maui 9.0.60, ora anche l'helper della carta dovrebbe venire maciullato sui dispositivi mobili</PackageReleaseNotes>
 		<PackageTags>cards</PackageTags>
 		<FileVersion>1.5.0</FileVersion>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
 		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-		<Version>1.5.6</Version>
+		<Version>1.5.7</Version>
 		<AssemblyName>CardFramework.Maui</AssemblyName>
 		<WindowsPackageType>None</WindowsPackageType>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
