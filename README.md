@@ -43,6 +43,12 @@ Usa il linq sugli array, ed è il primo assembly indipendente a farlo, su androi
 
 https://www.nuget.org/packages/CardFramework.maui
 
+## Cosa è possibile ottenere
+
+Il poker e la briscola secondo la teoria dei giochi, mentre per i giochi con piatto bisogna usare i grafi di presa, verosimilmente pesati secondo gli obiettivi, ma è tutto da costruire.
+
+E' possibile passare dalla briscola al poker in qualsiasi momento, per cui si può costruire un gioco in cui un giocatore gioca briscola e l'altro il poker, perché la variabile non ê system wide, ma è una flag da passare al metodo di giocata.
+
 ## Donazioni
 
 http://numerone.altervista.org/donazioni.php
