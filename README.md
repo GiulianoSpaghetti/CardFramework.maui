@@ -37,7 +37,7 @@ Al momento copre la briscola ed il poker, col poker che si fissa sul seme "primo
 
 Siete liberi di espanderlo con i grafi di presa.
 
-Usa il linq sugli array, ed è il primo assembly indipendente a farlo, su android pare funzionare correttamemnte, su windows no, per via dell'ottimizzazione del framework.
+Usa il linq sugli array, ed è il primo assembly indipendente a farlo.
 
 ## Come ottenere
 
