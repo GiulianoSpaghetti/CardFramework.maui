@@ -10,8 +10,8 @@ Il resource dictionary deve includere 4 campi: bastoni, coppe, spade e denari da
 Il codice di apertura deve essere:
 
 	e = new ElaboratoreCarteBriscola(briscolaDaPunti, 0, 39, 40);
-	m = new Mazzo(e);
-	Carta.Inizializza(numerocarte,new CartaHelperBriscola(e.GetCartaBriscola()), "bastoni", "coppe", "denari", "spade");
+	m = new Mazzo(e, "Npaoletano");
+	Carta.Inizializza(numerocarte,new CartaHelperBriscola(m e.GetCartaBriscola()), "bastoni", "coppe", "denari", "spade", "Fiori", "Quadri", "Cuori", "Picche");
 	g = new Giocatore(new GiocatoreHelperUtente(), nomegiocatore, dimensionemano);
 	switch (indicatore di livello)
 	{

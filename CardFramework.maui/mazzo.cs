@@ -25,6 +25,10 @@ namespace org.altervista.numerone.framework
         /// </summary>
         private readonly ElaboratoreCarte elaboratore;
         /// <summary>
+        /// nome del mazzo, serve per stabilire se le stringhe di gioco devono essere italiane o francesi
+        /// </summary>
+        public String Nome { get; private set; }
+        /// <summary>
         /// Elabora il numero di carte indicate dall'elaboratore sulla base del minimo e del massimo messi nell'elaboratore
         /// </summary>
         private void Mischia()
@@ -37,11 +41,12 @@ namespace org.altervista.numerone.framework
         /// crea il mazzo
         /// </summary>
         /// <param name="e">elaboratore per personalizzare il mazzo</param>
-        public Mazzo(ElaboratoreCarte e)
+        public Mazzo(ElaboratoreCarte e, string nome)
         {
             elaboratore = e;
             carte = new UInt16[elaboratore.GetNumeroCarte()];
             Mischia();
+            Nome = nome;
         }
         /// <summary>
         /// getter del numero di carte totali del mazzo
@@ -60,6 +65,10 @@ namespace org.altervista.numerone.framework
             UInt16 c = carte[--numeroCarte];
             return c;
         }
-
+        /// <summary>
+        /// setter del nome del mazzo
+        /// </summary>
+        /// <param name="s">nome del mazzo</param>
+        public void SetNome(String s) { Nome = s; }
     };
 }

@@ -64,13 +64,18 @@ namespace org.altervista.numerone.framework.solitario
         /// <summary>
         /// retituisce il seme della carta indicata
         /// </summary>
+        /// <param name="m">mazzo col nome</param>
         /// <param name="carta">carta di cui prendere il seme</param>
         /// <param name="s0">Stringa indicante bastoni</param>
         /// <param name="s1">Stringa indicante coppe</param>
         /// <param name="s2">Stringa indicante denari</param>
         /// <param name="s3">Stringa indicate spade</param>
-        /// <returns>un numero intero, verosimilmemnte da 0 a 4</returns>
-        public string GetSemeStr(ushort carta, string s0, string s1, string s2, string s3)
+        /// <param name="s4">prima delle 4 stringhe indicante il seme framcese</param>
+        /// <param name="s5">seconda delle 4 stringhe indicante il seme francese</param>
+        /// <param name="s6">terza delle 4 stringhe indicante il seme francese</param>
+        /// <param name="s7">quarta delle 4 stringhe indicante il seme francese</param>
+        /// <returns>il sene in formato stringa della carta</returns>
+        public string GetSemeStr(Mazzo m, ushort carta, string s0, string s1, string s2, string s3, string s4, string s5, string s6, string s7)
         {
             return "";
         }

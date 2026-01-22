@@ -57,24 +57,41 @@ namespace org.altervista.numerone.framework.briscola
         /// <summary>
         /// retituisce il seme in formato stringa della carta presa in esame (uno tra s0 e s7)
         /// </summary>
+        /// <param name="m">mazzo col nome</param>
         /// <param name="Carta">carta da prendere in esame</param>
         /// <param name="s0">primo seme italiano</param>
         /// <param name="s1">secondo seme italiano</param>
         /// <param name="s2">terzo seme italiano</param>
         /// <param name="s3">quarto seme italiano</param>
-        public string GetSemeStr(UInt16 Carta, string s0, string s1, string s2, string s3)
-		{
-			string s = "";
-			switch (Carta / 10)
-			{
-				case 0: s = s0 ; break;
-				case 1: s = s1; break;
-				case 2: s = s2; break;
-				case 3: s = s3; break;
-				default: throw new ArgumentException("Chiamato getsemestr con seme > 3");
-			}
-			return s;
-		}
+        /// <param name="s4">prima delle 4 stringhe indicante il seme framcese</param>
+        /// <param name="s5">seconda delle 4 stringhe indicante il seme francese</param>
+        /// <param name="s6">terza delle 4 stringhe indicante il seme francese</param>
+        /// <param name="s7">quarta delle 4 stringhe indicante il seme francese</param>
+
+        public string GetSemeStr(Mazzo m, UInt16 Carta, string s0, string s1, string s2, string s3, string s4, string s5, string s6, string s7)
+        {
+            string s = "a";
+            if (m.Nome == "Bergamasco" || m.Nome == "Bolognese" || m.Nome == "Bresciano" || m.Nome == "Napoletano" || m.Nome == "Romagnolo" || m.Nome == "Sardo" || m.Nome == "Siciliano" || m.Nome == "Trientino" || m.Nome == "Trevigiano" || m.Nome == "Trentino" || m.Nome == "Triestino")
+                switch (Carta / 10)
+                {
+                    case 0: s = s0 as String; break;
+                    case 1: s = s1 as String; break;
+                    case 2: s = s2 as String; break;
+                    case 3: s = s3 as String; break;
+                    default: throw new ArgumentException("Chiamata a getsemestr con seme > 3");
+                }
+            else
+                switch (Carta / 10)
+                {
+                    case 0: s = s4 as String; break;
+                    case 1: s = s5 as String; break;
+                    case 2: s = s6 as String; break;
+                    case 3: s = s7 as String; break;
+                    default:
+                        throw new ArgumentException("Chiamata a getsemestr con seme > 3");
+                }
+            return s;
+        }
         /// <summary>
         /// Accoppia seme e valore per tornare l'intero indicante la carta
         /// </summary>

@@ -55,34 +55,44 @@ namespace org.altervista.numerone.framework
         /// <summary>
         /// Costruttore privato perché le carte devono essere immutabili.
         /// </summary>
+        /// <param name="m">mazzo col nome</param>
         /// <param name="n">numero intero indicante il numero intero della carta</param>
         /// <param name="s0">prima delle 4 stringhe indicante il seme italiano</param>
         /// <param name="s1">seconda delle 4 stringhe indicante il seme italiano</param>
         /// <param name="s2">terza delle 4 stringhe indicante il seme italiano</param>
         /// <param name="s3">quarta delle 4 stringhe indicante il seme italiano</param>
-        private Carta(UInt16 n, string s0, string s1, string s2, string s3)
+        /// <param name="s4">prima delle 4 stringhe indicante il seme framcese</param>
+        /// <param name="s5">seconda delle 4 stringhe indicante il seme francese</param>
+        /// <param name="s6">terza delle 4 stringhe indicante il seme francese</param>
+        /// <param name="s7">quarta delle 4 stringhe indicante il seme francese</param>
+        private Carta(Mazzo m, UInt16 n, string s0, string s1, string s2, string s3, string s4, string s5, string s6, string s7)
         {
             Seme = Helper.GetSeme(n);
             Valore = Helper.GetValore(n);
             Punteggio = Helper.GetPunteggio(n);
-            SemeStr = Helper.GetSemeStr(n, s0, s1, s2, s3);
+            SemeStr = Helper.GetSemeStr(m, n, s0, s1, s2, s3, s4, s5, s6, s7);
         }
         /// <summary>
         /// Vero costruttore, identifica un numero di carte pari ad n ed inizializza il vettore delle carte
         /// </summary>
+        /// <param name="m">mazzo col nome</param>
         /// <param name="n">numero delle carte</param>
         /// <param name="h">per evitare una ereditarietà selvaggia, si è scelto di usare una classe a parte per il comportamento specifico della classe</param>
         /// <param name="s0">prima delle 4 stringhe indicante il seme italiano</param>
         /// <param name="s1">seconda delle 4 stringhe indicante il seme italiano</param>
         /// <param name="s2">terza delle 4 stringhe indicante il seme italiano</param>
         /// <param name="s3">quarta delle 4 stringhe indicante il seme italiano</param>
-        public static void Inizializza(UInt16 n, CartaHelper h, string s0, string s1, string s2, string s3)
+        /// <param name="s4">prima delle 4 stringhe indicante il seme framcese</param>
+        /// <param name="s5">seconda delle 4 stringhe indicante il seme francese</param>
+        /// <param name="s6">terza delle 4 stringhe indicante il seme francese</param>
+        /// <param name="s7">quarta delle 4 stringhe indicante il seme francese</param>
+        public static void Inizializza(Mazzo m, ushort n, CartaHelper h, string s0, string s1, string s2, string s3, string s4, string s5, string s6, string s7)
         {
             Helper = h;
             carte = new Carta[n];
             for (UInt16 i = 0; i < n; i++)
             {
-                carte[i] = new Carta(i, s0, s1, s2, s3);
+                carte[i] = new Carta(m, i, s0, s1, s2, s3, s4, s5, s6, s7);
 
             }
         }
@@ -131,6 +141,23 @@ namespace org.altervista.numerone.framework
                 CartaHelper h1 = Helper;
                 Helper = h;
             }
+        }
+        /// <summary>
+        /// Imposta i semi delle carte in formato stringa
+        /// </summary>
+        /// <param name="m">mazzo col nome</param>
+        /// <param name="s0">prima delle 4 stringhe indicante il seme italiano</param>
+        /// <param name="s1">seconda delle 4 stringhe indicante il seme italiano</param>
+        /// <param name="s2">terza delle 4 stringhe indicante il seme italiano</param>
+        /// <param name="s3">quarta delle 4 stringhe indicante il seme italiano</param>
+        /// <param name="s4">prima delle 4 stringhe indicante il seme framcese</param>
+        /// <param name="s5">seconda delle 4 stringhe indicante il seme francese</param>
+        /// <param name="s6">terza delle 4 stringhe indicante il seme francese</param>
+        /// <param name="s7">quarta delle 4 stringhe indicante il seme francese</param>
+        public static void SetSemiStr(Mazzo m, string s0, string s1, string s2, string s3, string s4, string s5, string s6, string s7)
+        {
+            for (ushort i = 0; i < carte.Length; i++)
+                carte[i].SemeStr = Helper.GetSemeStr(m, i, s0, s1, s2, s3, s4, s5, s6, s7);
         }
     }
 }
