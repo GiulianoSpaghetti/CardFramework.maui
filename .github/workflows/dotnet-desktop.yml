@@ -14,7 +14,7 @@ jobs:
         configuration: [Release]
 
     env:
-      Solution_Name: TrumpSuitGameKnocked.slnx
+      Solution_Name: CardFramework.maui.slnx
       Configuration: ${{ matrix.configuration }}
 
     steps:
@@ -27,16 +27,6 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 10.0.x
-
-    - name: Import PFX certificate
-      run: |
-        $pfx_password = ConvertTo-SecureString "${{ secrets.PFX_KEY }}" -AsPlainText -Force
-        $pfxBytes = [System.Convert]::FromBase64String("${{ secrets.BASE64_ENCODED_PFX }}")
-        $pfxPath = Join-Path $env:RUNNER_TEMP "signing.pfx"
-        [System.IO.File]::WriteAllBytes($pfxPath, $pfxBytes)
-        Import-PfxCertificate -FilePath $pfxPath -CertStoreLocation Cert:\CurrentUser\My -Password $pfx_Password
-        Write-Host "Certificate safely imported to store."
-      shell: pwsh
 
     - name: Install MAUI Workload
       run: dotnet workload install maui
