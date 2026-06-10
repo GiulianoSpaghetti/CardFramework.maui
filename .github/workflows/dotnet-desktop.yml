@@ -14,7 +14,7 @@ jobs:
         configuration: [Release]
 
     env:
-      Solution_Name: CardFramework.maui.slnx
+      Solution_Name: CardFramework.maui
       Configuration: ${{ matrix.configuration }}
 
     steps:
@@ -26,22 +26,23 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: 10.0.x
-
+        dotnet-version: 11.0.x
+        dotnet-quality: preview
+        
     - name: Install MAUI Workload
       run: dotnet workload install maui
 
     - name: Restore packages
-      run: dotnet restore CardFramework.Maui.slnx
+      run: dotnet restore {{ env:Solution_Name }}.slnx
 
     - name: Build MAUI Libraries
       run: |
-        dotnet build CardFramework.maui/CardFramework.maui.csproj -c $env:Configuration
+        dotnet build  ${{ env.Solution_Name }}/${{ env.Solution_Name }}.csproj -c $env:Configuration
       shell: pwsh
 
     - name: Pack Nuget Package
       run: |
-        dotnet pack CardFramework.maui/CardFramework.maui.csproj
+        dotnet pack  ${{ env.Solution_Name }}/${{ env.Solution_Name }}.csproj
       shell: pwsh
 
     - name: Upload NUGET artifact
