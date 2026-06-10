@@ -27,7 +27,7 @@
 		<FileVersion>1.7.0-preview5.1</FileVersion>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
 		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-		<Version>1.7-0preview5.1</Version>
+		<Version>1.7.0-preview5.1</Version>
 		<AssemblyName>CardFramework.Maui</AssemblyName>
 		<WindowsPackageType>MSIX</WindowsPackageType>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
