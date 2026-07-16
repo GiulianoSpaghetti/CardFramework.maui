@@ -27,7 +27,7 @@ namespace org.altervista.numerone.framework
         /// <summary>
         /// nome del mazzo, serve per stabilire se le stringhe di gioco devono essere italiane o francesi
         /// </summary>
-        public String Nome { get; private set; }
+        public String Nome { get; set; }
         /// <summary>
         /// Elabora il numero di carte indicate dall'elaboratore sulla base del minimo e del massimo messi nell'elaboratore
         /// </summary>
@@ -57,7 +57,7 @@ namespace org.altervista.numerone.framework
         /// restituisce la prima carta in cima al mazzo
         /// </summary>
         /// <returns>intero indicante la carta in cima al mazzo</returns>
-        /// <exception cref="IndexOutOfRangeException">se non ci sono più carte</exception>
+        /// <exception cref="IndexOutOfRangeException">se non ci sono piÃ¹ carte</exception>
         public UInt16 GetCarta()
         {
             if (numeroCarte > 40)
@@ -65,10 +65,5 @@ namespace org.altervista.numerone.framework
             UInt16 c = carte[--numeroCarte];
             return c;
         }
-        /// <summary>
-        /// setter del nome del mazzo
-        /// </summary>
-        /// <param name="s">nome del mazzo</param>
-        public void SetNome(String s) { Nome = s; }
     };
 }
