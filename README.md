@@ -4,8 +4,12 @@ Il primo framework indipendente ad usare il linq.
 ![Napoli-Logo](https://github.com/user-attachments/assets/fc1773c1-6823-429d-8760-e7d7e79f7d8f)
 ![made in parco grifeo](https://github.com/user-attachments/assets/c1d40b56-101a-462f-9970-006c81937300)
 
-Framework di numerone in maui per la realizzazione di giochi di carte equi.
-La codebase è in .net, con l'aggiunta di un resourcedictionary da passare.
+Framework di numerone in avalonia per la realizzazione di giochi di carte equi, con la particolarità che vuole estrarre la logica di gioco dalla logica di dare le carte, che è sempre la stessa.
+
+Attualmente sono presenti tre logiche di gioco: una per la briscola, una per la briscola con risposta di seme ed una per il solitario la torre di babele, e per gestire le logiche di gioco bisogna implementare le interfacce (contratti) CartaHelper e GiocatoreHelper, con GiocatoreHelper che deve essere implementato sia per l'utente che per la CPU.
+
+Questo introduce un lieve overhead, ma è gestito e sopratutto è difficilmente superabile, perché la logica di gioco agli scheletri viene passata in fase di inizializzazione ed è gestita come variabile di classe non di istanza (con lo static come il c++ insegna, non come ottimizzazione per ottenere una sola variabile).
+
 Il resource dictionary deve includere 4 campi: bastoni, coppe, spade e denari da tradurre dall'italiano nella lingua desiderata, i 4 semi dei mazzi di carte italiane, o eventualmente francesi.
 Il codice di apertura deve essere:
 
