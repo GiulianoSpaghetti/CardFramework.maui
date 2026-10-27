@@ -22,12 +22,12 @@
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<RepositoryUrl>https://github.com/GiulianoSpaghetti/CardFramework.maui</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
-		<PackageReleaseNotes>Ricompilato col dotnet 10.0.13 maui 10.0.120</PackageReleaseNotes>
+		<PackageReleaseNotes>Ricompilato col dotnet 10.0.14 maui 10.0.120</PackageReleaseNotes>
 		<PackageTags>cards</PackageTags>
-		<FileVersion>1.6.0.25</FileVersion>
+		<FileVersion>1.6.0.26</FileVersion>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
 		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-		<Version>1.6.25</Version>
+		<Version>1.6.26</Version>
 		<AssemblyName>CardFramework.Maui</AssemblyName>
 		<WindowsPackageType>MSIX</WindowsPackageType>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
@@ -51,7 +51,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Maui.Controls" Version="10.0.120" />
-		<PackageReference Include="Microsoft.NET.ILLink.Tasks" Version="10.0.13" />
+		<PackageReference Include="Microsoft.NET.ILLink.Tasks" Version="10.0.14" />
 	</ItemGroup>
 
 	<ItemGroup>
