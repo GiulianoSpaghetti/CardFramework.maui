@@ -22,12 +22,12 @@
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<RepositoryUrl>https://github.com/GiulianoSpaghetti/CardFramework.maui</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
-		<PackageReleaseNotes>Ricompilato col dotnet 10.0.14 maui 10.0.120</PackageReleaseNotes>
+		<PackageReleaseNotes>Ricompilato col dotnet 11 rtm e maui 11</PackageReleaseNotes>
 		<PackageTags>cards</PackageTags>
-		<FileVersion>1.6.0.26</FileVersion>
+		<FileVersion>1.7.0</FileVersion>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
 		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-		<Version>1.6.26</Version>
+		<Version>1.7.0</Version>
 		<AssemblyName>CardFramework.Maui</AssemblyName>
 		<WindowsPackageType>MSIX</WindowsPackageType>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
